@@ -25,7 +25,7 @@ Singing voice is tagged as music.
 
 ## Installation
 
-inaSpeechSegmenter works with Python 3.8 to Python 3.13. It is based on Tensorflow which does not yet support Python 3.14+.
+inaSpeechSegmenter works with Python 3.11 to Python 3.13. It is based on Tensorflow which does not yet support Python 3.14+.
 
 It is available on Python Package Index [inaSpeechSegmenter](https://pypi.org/project/inaSpeechSegmenter/) and packaged as a docker image [inafoss/inaspeechsegmenter](https://hub.docker.com/r/inafoss/inaspeechsegmenter).
 
