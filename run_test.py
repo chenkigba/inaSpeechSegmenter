@@ -39,7 +39,7 @@ import numpy as np
 import tempfile
 import h5py
 
-from scripts.ina_speech_segmenter_pyro_server import GenderJobServer
+from inaSpeechSegmenter.cli.pyro_server import GenderJobServer
 
 class TestInaSpeechSegmenter(unittest.TestCase):
     

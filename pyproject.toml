@@ -1,0 +1,102 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "inaSpeechSegmenter"
+dynamic = ["version"]
+description = "CNN-based audio segmentation toolkit. Does voice activity detection, speech detection, music detection, noise detection, speaker gender recognition."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "David Doukhan", email = "david.doukhan@gmail.com"},
+]
+keywords = [
+    "speech-segmentation",
+    "audio-analysis",
+    "music-detection",
+    "noise-detection",
+    "speech-detection",
+    "speech-music",
+    "gender-classification",
+    "gender-representation",
+    "speaker-gender",
+    "speech",
+    "music",
+    "noise",
+    "gender",
+    "voice-activity-detection",
+    "speech-activity-detection",
+    "VAD",
+    "praat",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Sociology",
+]
+dependencies = [
+    "numpy<2.0",  # onnxruntime 1.16.x not compatible with numpy 2.x
+    "pandas",
+    "scikit-image",
+    "pyannote.core",
+    "matplotlib",
+    "Pyro4",
+    "pytextgrid",
+    "soundfile",
+    # Platform-specific dependencies for macOS
+    "tensorflow; sys_platform == 'darwin'",
+    "onnxruntime-silicon; sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "onnxruntime; sys_platform == 'darwin' and platform_machine != 'arm64'",
+    # Platform-specific dependencies for non-macOS (Linux/Windows with CUDA)
+    "tensorflow[and-cuda]; sys_platform != 'darwin'",
+    "onnxruntime-gpu; sys_platform != 'darwin'",
+]
+
+[project.urls]
+Homepage = "https://github.com/ina-foss/inaSpeechSegmenter"
+
+[project.scripts]
+"ina_speech_segmenter.py" = "inaSpeechSegmenter.cli.ina_speech_segmenter:main"
+"ina_speech_segmenter_pyro_client.py" = "inaSpeechSegmenter.cli.pyro_client:main"
+"ina_speech_segmenter_pyro_server.py" = "inaSpeechSegmenter.cli.pyro_server:main"
+"ina_speech_segmenter_pyro_client_setjobs.py" = "inaSpeechSegmenter.cli.pyro_client_setjobs:main"
+
+[tool.hatch.version]
+source = "vcs"
+tag-pattern = "v(?P<version>[^\\+]+)"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/inaSpeechSegmenter",
+    "/scripts",
+    "/media",
+    "/tutorials",
+    "/README.md",
+    "/LICENSE",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["inaSpeechSegmenter"]
+

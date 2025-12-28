@@ -25,5 +25,14 @@
 
 from .segmenter import Segmenter, seg2csv
 
-from . import _version
-__version__ = _version.get_versions()['version']
+# Version managed by hatch-vcs from git tags
+try:
+    from importlib.metadata import version, PackageNotFoundError
+    try:
+        __version__ = version("inaSpeechSegmenter")
+    except PackageNotFoundError:
+        # Package is not installed (e.g., running from source without install)
+        __version__ = "0+unknown"
+except ImportError:
+    # Python < 3.8 fallback (though we require >= 3.8)
+    __version__ = "0+unknown"

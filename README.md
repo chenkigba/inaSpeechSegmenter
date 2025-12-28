@@ -38,6 +38,20 @@ Installation of ffmpeg for ubuntu can be done using the following commandline:
 $ sudo apt-get install ffmpeg
 ```
 
+### Installation with uv (Recommended)
+
+[uv](https://github.com/astral-sh/uv) is a fast Python package installer and resolver. To install inaSpeechSegmenter with uv:
+
+```bash
+# Install uv if you haven't already (Linux/macOS)
+$ curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create a virtual environment and install inaSpeechSegmenter
+$ uv venv
+$ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+$ uv pip install inaSpeechSegmenter
+```
+
 ### PIP installation
 ```bash
 # create a python 3 virtual environment and activate it
@@ -55,12 +69,13 @@ $ git clone https://github.com/ina-foss/inaSpeechSegmenter.git
 # create a python 3 virtual environment and activate it
 $ python -m venv env
 $ source env/bin/activate
-# install framework and dependencies
-# you should use pip instead of setup.py for installing from source
+# install framework and dependencies (using uv is faster)
 $ cd inaSpeechSegmenter
-$ pip install .
+$ uv pip install -e .
+# OR with pip:
+# $ pip install -e .
 # check program behavior
-$ python setup.py test
+$ python run_test.py
 ```
 
 ## Using inaSpeechSegmenter

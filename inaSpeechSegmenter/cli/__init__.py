@@ -23,9 +23,5 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-"""Thin wrapper for backward compatibility - delegates to inaSpeechSegmenter.cli.pyro_client."""
+"""Command-line interface modules for inaSpeechSegmenter."""
 
-from inaSpeechSegmenter.cli.pyro_client import main
-
-if __name__ == '__main__':
-    raise SystemExit(main())

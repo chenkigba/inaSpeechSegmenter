@@ -23,9 +23,30 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-"""Thin wrapper for backward compatibility - delegates to inaSpeechSegmenter.cli.pyro_client."""
 
-from inaSpeechSegmenter.cli.pyro_client import main
+import Pyro4
+import sys
+
+
+def main(argv=None):
+    """Main entry point for the ina_speech_segmenter_pyro_client_setjobs command."""
+    if argv is None:
+        argv = sys.argv[1:]
+
+    if len(argv) < 2:
+        print("Usage: ina_speech_segmenter_pyro_client_setjobs.py <uri> <csvfile>")
+        return 1
+
+    uri = argv[0]
+    csvfname = argv[1]
+
+    jobserver = Pyro4.Proxy(uri)
+
+    ret = jobserver.set_jobs(csvfname)
+    print(ret)
+    return 0
+
 
 if __name__ == '__main__':
-    raise SystemExit(main())
+    sys.exit(main())
+
